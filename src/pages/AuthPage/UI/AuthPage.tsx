@@ -1,6 +1,7 @@
 import React from 'react';
-import { classNames } from 'shared/helpers/classNames/classNames';
+import {classNames} from 'shared/helpers/classNames/classNames';
 import cls from './AuthPage.module.scss'
+import {AuthByEmail} from "../../../features/AuthByEmail";
 
 interface AuthPageProps {
     className?: string
@@ -14,7 +15,7 @@ const AuthPage = (props: AuthPageProps) => {
 
     return (
         <div className={classNames(cls.AuthPage, {}, [className])}>
-           AUTH
+            <AuthByEmail/>
         </div>
     );
 };

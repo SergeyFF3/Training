@@ -4,6 +4,21 @@
       "email": "test@mail.ru",
       "password": "$2a$10$5RQtZ65YaCwhvTUEK4vb8.m3RRv.ZMqxciPZPp9oAwLNu2/ZJjaOO",
       "id": 1
+    },
+    {
+      "email": "12345@mail.ru",
+      "password": "$2a$10$ox3aUzenT7cMgi0bG4ylTOK4zlFfkYahRI.z4Ztzf2d/GBOaoFKaS",
+      "id": 2
+    },
+    {
+      "email": "mail@mail.ru",
+      "password": "$2a$10$r0PNgZ0vrE0rpDAkUDJghOVUJcetJrrOTZpQPpJjr2PUwHDkbWPum",
+      "id": 3
+    },
+    {
+      "email": "qwerty@mail.ru",
+      "password": "$2a$10$kr4Lj28mpXiGgOosdL50V.iMuzQQI1V/ZZ7souMSDt3/egKxc1LLW",
+      "id": 4
     }
   ]
 }

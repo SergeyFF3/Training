@@ -42,7 +42,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SEARCH]: {
         path: RoutesPath.search,
         element: <SearchPage/>,
-        authOnly: true
     },
     [AppRoutes.NOT_FOUND]: {
         path: RoutesPath.not_found,
