@@ -6,17 +6,21 @@ import {LoginSchema} from "features/AuthByEmail";
 import { loginReducer } from "features/AuthByEmail/model/slices/loginSlice";
 import {UserSchema} from "../../../../entities/User";
 import { userReducer } from "entities/User/model/slices/userSlice";
+import {ProfileSchema} from "../../../../pages/ProfilePage";
+import { profileReducer } from "pages/ProfilePage/model/slices/profileSlice";
 
 export interface StateSchema {
     register: RegisterSchema
     login: LoginSchema
     user: UserSchema
+    profile: ProfileSchema
 }
 
 const RootReducer = combineReducers({
     register: registerReducer,
     login: loginReducer,
-    user: userReducer
+    user: userReducer,
+    profile: profileReducer
 })
 
 export const store = configureStore<StateSchema>({
