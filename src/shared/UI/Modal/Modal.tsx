@@ -1,45 +1,61 @@
-import React, {ReactNode, useCallback, useState} from 'react';
-import {classNames} from "shared/helpers/classNames/classNames";
+import React, {ReactNode, useEffect, useRef, useState} from 'react';
+import {classNames, Mods} from "shared/helpers/classNames/classNames";
 import cls from './Modal.module.scss'
-import Button from "../Button/Button";
 
 interface ModalProps {
     className?: string
     children?: ReactNode
-    isOpen: boolean
-    onClose: () => void
+    isOpen?: boolean
+    onClose?: () => void
 }
+
+const delay = 300
 
 const Modal = (props: ModalProps) => {
 
     const {
         className,
-        children,
-        onClose,
         isOpen,
+        onClose,
+        children
     } = props
 
     const [isClosing, setIsClosing] = useState(false)
 
-    const closeHandler = useCallback(() => {
-        onClose()
-    }, [onClose])
+    const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
-    const Mods: Record<string, boolean> = {
-        [cls.closing]: isOpen,
-        [cls.opened]: isOpen
+    const closeHandler = () => {
+        if (onClose) {
+            setIsClosing(true)
+            timerRef.current = setTimeout(() => {
+                onClose()
+                setIsClosing(false)
+            }, delay)
+        }
+    }
+
+    const contentClick = (e: React.MouseEvent) => {
+        e.stopPropagation()
+    }
+
+    useEffect(() => {
+        return () => clearTimeout(timerRef.current)
+    }, [isOpen])
+
+    const mods: Mods = {
+        [cls.opened]: isOpen,
+        [cls.closing]: isClosing
     }
 
     return (
-        <div className={classNames(cls.Modal, Mods, [])}>
-           <div className={cls.overlay}>
-               <div className={cls.content}>
+        <div className={classNames(cls.Modal, mods, [className])}>
+           <div onClick={closeHandler} className={cls.overlay}>
+               <div onClick={contentClick} className={cls.content}>
                    {children}
-                   <Button onClick={closeHandler}>X</Button>
                </div>
            </div>
         </div>
     );
 };
 
-export default Modal;
+export default React.memo(Modal);
